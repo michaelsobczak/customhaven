@@ -1,5 +1,5 @@
 from gloomtools.image import load_font, load_ability_card_background, draw_text, tint, draw_ability_card
-
+import gloomtools.image as gti
 
 def test_load_font():
     font = load_font()
@@ -19,3 +19,6 @@ def test_ability_tint():
 def test_draw_ability_card():
     card = draw_ability_card('Custom Card', 78, "Some top attackish stuff", "some bottom moveish stuff", (155,251,152,255))
     card.show()
+
+def test_load_icon():
+    assert gti.load_icon('wound')

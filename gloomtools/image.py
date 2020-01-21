@@ -2,6 +2,7 @@
 from PIL import ImageFont, ImageDraw, Image
 import os
 
+_ICON_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'icons')
 _FONT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'fonts', 'PirataOne-Gloomhaven.ttf')
 _ABILITY_CARD_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'images', 'ability.png')
 
@@ -12,6 +13,32 @@ _CARD_TITLE_SIZE = 40
 _CARD_INITIATIVE_X = 196
 _CARD_INITIATIVE_Y = 278
 _CARD_INITIATIVE_SIZE = 30
+
+_CARD_TEXT_SIZE = 15
+
+_CARD_TOP_TEXT_X = 60
+_CARD_TOP_TEXT_Y = 110
+
+_CARD_BOTTOM_TEXT_X = 60
+_CARD_BOTTOM_TEXT_Y = 358
+
+_CARD_ICON_WIDTH = 30
+_CARD_ICON_HEIGHT = 30
+
+
+def load_icon(name: str) -> Image:
+    name = name.lower()
+    for iconfile in os.listdir(_ICON_DIR):
+        bname, ext = os.path.splitext(iconfile)
+        if bname.lower() == name and ext.replace('.', '') in ['jpeg', 'jpg', 'png']:
+            return Image.open(os.path.join(_ICON_DIR, iconfile))
+    return None
+
+
+def draw_icon(img, icon, w, h, x, y):
+    ic = load_icon(icon).resize((w, h))
+    img.paste(ic, (x, y))
+
 
 def load_font(path: str = _FONT_PATH, size: int = 10):
     return ImageFont.truetype(_FONT_PATH, size=size)
@@ -43,4 +70,15 @@ def draw_ability_card(title: str, initiative: int, toptext: str, bottomtext: str
 
     initiative_font = load_font(size=_CARD_INITIATIVE_SIZE)
     draw_text(text=str(initiative), x=_CARD_INITIATIVE_X, y=_CARD_INITIATIVE_Y, image=card, font=initiative_font)
+
+    text_font = load_font(size=_CARD_TEXT_SIZE)
+
+    draw_text(text=toptext, x=_CARD_TOP_TEXT_X, y=_CARD_TOP_TEXT_Y, image=card, font=text_font)
+    draw_text(text=bottomtext, x=_CARD_BOTTOM_TEXT_X, y=_CARD_BOTTOM_TEXT_Y, image=card, font=text_font)
+
+    draw_icon(card, 'wound', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 90, 140)
+    draw_icon(card, 'bless', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 125, 140)
+    draw_icon(card, 'wind', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 160, 140)
+    draw_icon(card, 'attack', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 195, 140)
+
     return card

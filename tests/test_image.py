@@ -11,9 +11,7 @@ def test_ability_bg_load():
 def test_draw_ability_title():
     img = load_ability_card_background()
     draw_text('Card Title', x=120, y=10, image=img, font=load_font(size=40))
-    img.show()
 
 def test_ability_tint():
     img = load_ability_card_background()
-    img = tint(img, 152,251,152, 255)
-    img.show()
+    assert tint(img, 152,251,152, 255)

@@ -15,5 +15,5 @@ def test_draw_ability_title():
 
 def test_ability_tint():
     img = load_ability_card_background()
-    img = tint(img, 255,105,180, 255)
+    img = tint(img, 152,251,152, 255)
     img.show()

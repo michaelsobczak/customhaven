@@ -16,17 +16,9 @@ def draw_text(text: str, x: int, y: int, image: Image, font):
     d = ImageDraw.Draw(image)
     d.text((x,y), text, font=font, fill=(255,255,255,255))
 
-# def tint(image: Image, r: int, g: int, b: int, a: int):
-#     tint = (r/255.0, g/255.0, b/255.0,a/255.0)
-#     pix = im.load()
-#     for x in xrange( im.size[0] ):
-#     for y in xrange( im.size[1] ):
-#     c = pix[x,y]
-#     pix[x,y] = (int(c[0]*tint[0]), int(c[1]*tint[1]),
-#     int(c[2]*tint[2]), c[3])
 
-
-def _tint(img, color):
+def tint(img: Image, r: int, g: int, b: int, a: int = 255):
+    color = (r, g, b, a)
     color_map = []
     for component in color:
         color_map.extend(int(component/255.0*i) for i in range(256))

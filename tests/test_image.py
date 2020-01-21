@@ -1,4 +1,4 @@
-from gloomtools.image import load_font, load_ability_card_background, draw_text, _tint
+from gloomtools.image import load_font, load_ability_card_background, draw_text, tint
 
 
 def test_load_font():
@@ -15,5 +15,5 @@ def test_draw_ability_title():
 
 def test_ability_tint():
     img = load_ability_card_background()
-    img = _tint(img, (255,105,180, 255))
+    img = tint(img, 255,105,180, 255)
     img.show()

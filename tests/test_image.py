@@ -1,4 +1,4 @@
-from gloomtools.image import load_font, load_ability_card_background, draw_text, tint
+from gloomtools.image import load_font, load_ability_card_background, draw_text, tint, draw_ability_card
 
 
 def test_load_font():
@@ -15,3 +15,7 @@ def test_draw_ability_title():
 def test_ability_tint():
     img = load_ability_card_background()
     assert tint(img, 152,251,152, 255)
+
+def test_draw_ability_card():
+    card = draw_ability_card('Custom Card', 78, "Some top attackish stuff", "some bottom moveish stuff", (155,251,152,255))
+    card.show()

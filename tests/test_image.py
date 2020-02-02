@@ -17,7 +17,7 @@ def test_ability_tint():
     assert tint(img, 152,251,152, 255)
 
 def test_draw_ability_card():
-    card = draw_ability_card('Custom Card', 78, "{attack} 3 {wound} target all adjacent enemies", "{attack} 3 {range} 2 {wind} {fire}", (155,251,152,255))
+    card = draw_ability_card('Custom Card', 78, "{attack} 3 {wound} target all adjacent enemies {dark}", "{attack} 3 {range} 2 {wind} {fire}", (155,251,152,255))
     card.show()
 
 def test_load_icon():

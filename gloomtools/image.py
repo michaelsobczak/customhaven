@@ -25,7 +25,7 @@ _CARD_BOTTOM_TEXT_Y = 358
 _CARD_ICON_WIDTH = 30
 _CARD_ICON_HEIGHT = 30
 
-_CARD_TEXT_WIDTH = 7
+_CARD_TEXT_WIDTH = 5
 
 
 def load_icon(name: str) -> Image:

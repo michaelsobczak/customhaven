@@ -25,6 +25,8 @@ _CARD_BOTTOM_TEXT_Y = 358
 _CARD_ICON_WIDTH = 30
 _CARD_ICON_HEIGHT = 30
 
+_CARD_TEXT_WIDTH = 7
+
 
 def load_icon(name: str) -> Image:
     name = name.lower()
@@ -35,7 +37,7 @@ def load_icon(name: str) -> Image:
     return None
 
 
-def draw_icon(img, icon, w, h, x, y):
+def draw_icon(img, icon,  x, y, w=_CARD_ICON_WIDTH, h=_CARD_ICON_HEIGHT):
     ic = load_icon(icon).resize((w, h))
     img.paste(ic, (x, y))
 
@@ -61,6 +63,27 @@ def tint(img: Image, r: int, g: int, b: int, a: int = 255):
     return img.point(color_map)
 
 
+def draw_ability_line(image: Image, text: str, x: int, y: int):
+    pending_text = ''
+    current_x = x
+    text_font = load_font(size=_CARD_TEXT_SIZE)
+    for token in text.split(' '):
+        if '{' in token:
+            if pending_text:
+                draw_text(pending_text, current_x, y, image, text_font)
+                current_x += (_CARD_TEXT_WIDTH * len(pending_text))
+                pending_text = ''
+            icon = token.replace('{', '').replace('}', '')
+            draw_icon(image, icon, current_x, y)
+            current_x += int(_CARD_ICON_WIDTH * 1.05)
+        else:
+            pending_text += f'{token} '
+
+    if pending_text:
+        draw_text(pending_text, current_x, y, image, text_font)
+
+
+
 def draw_ability_card(title: str, initiative: int, toptext: str, bottomtext: str, color):
 
     card = load_ability_card_background()
@@ -73,12 +96,9 @@ def draw_ability_card(title: str, initiative: int, toptext: str, bottomtext: str
 
     text_font = load_font(size=_CARD_TEXT_SIZE)
 
-    draw_text(text=toptext, x=_CARD_TOP_TEXT_X, y=_CARD_TOP_TEXT_Y, image=card, font=text_font)
-    draw_text(text=bottomtext, x=_CARD_BOTTOM_TEXT_X, y=_CARD_BOTTOM_TEXT_Y, image=card, font=text_font)
-
-    draw_icon(card, 'wound', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 90, 140)
-    draw_icon(card, 'bless', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 125, 140)
-    draw_icon(card, 'wind', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 160, 140)
-    draw_icon(card, 'attack', _CARD_ICON_WIDTH, _CARD_ICON_HEIGHT, 195, 140)
+    draw_ability_line(card, toptext, _CARD_TOP_TEXT_X, _CARD_TOP_TEXT_Y)
+    draw_ability_line(card, bottomtext, _CARD_BOTTOM_TEXT_X, _CARD_BOTTOM_TEXT_Y)
+    #draw_text(text=toptext, x=_CARD_TOP_TEXT_X, y=_CARD_TOP_TEXT_Y, image=card, font=text_font)
+    #draw_text(text=bottomtext, x=_CARD_BOTTOM_TEXT_X, y=_CARD_BOTTOM_TEXT_Y, image=card, font=text_font)
 
     return card

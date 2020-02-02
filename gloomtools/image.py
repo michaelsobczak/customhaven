@@ -1,5 +1,6 @@
 
 from PIL import ImageFont, ImageDraw, Image
+from typing import List
 import os
 
 _ICON_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'icons')
@@ -26,6 +27,8 @@ _CARD_ICON_WIDTH = 30
 _CARD_ICON_HEIGHT = 30
 
 _CARD_TEXT_WIDTH = 5
+_CARD_ICON_PADDING_X = 1.05
+_CARD_ICON_PADDING_Y = 1.10
 
 
 def load_icon(name: str) -> Image:
@@ -84,7 +87,7 @@ def draw_ability_line(image: Image, text: str, x: int, y: int):
 
 
 
-def draw_ability_card(title: str, initiative: int, toptext: str, bottomtext: str, color):
+def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomlines: List[str], color):
 
     card = load_ability_card_background()
     card = tint(card, *color)
@@ -96,9 +99,12 @@ def draw_ability_card(title: str, initiative: int, toptext: str, bottomtext: str
 
     text_font = load_font(size=_CARD_TEXT_SIZE)
 
-    draw_ability_line(card, toptext, _CARD_TOP_TEXT_X, _CARD_TOP_TEXT_Y)
-    draw_ability_line(card, bottomtext, _CARD_BOTTOM_TEXT_X, _CARD_BOTTOM_TEXT_Y)
-    #draw_text(text=toptext, x=_CARD_TOP_TEXT_X, y=_CARD_TOP_TEXT_Y, image=card, font=text_font)
-    #draw_text(text=bottomtext, x=_CARD_BOTTOM_TEXT_X, y=_CARD_BOTTOM_TEXT_Y, image=card, font=text_font)
+    for i, tl in enumerate(toplines):
+        ly = int(_CARD_TOP_TEXT_Y + ((_CARD_ICON_HEIGHT * _CARD_ICON_PADDING_Y) * i))
+        draw_ability_line(card, tl, _CARD_TOP_TEXT_X, ly)
+
+    for i, bl in enumerate(bottomlines):
+        ly = int(_CARD_BOTTOM_TEXT_Y + ((_CARD_ICON_HEIGHT * _CARD_ICON_PADDING_Y) * i))
+        draw_ability_line(card, bl, _CARD_BOTTOM_TEXT_X, ly)
 
     return card

@@ -1,11 +1,11 @@
 ability
-name,initiative,toptext,toploss,topduration,topaoe,bottomtext,bottomloss,level,bottomduration,topaoe
-Deep Tunnel,81,Move to any revealed hex on the map, true,,,{move} 2;{dark},FALSE,1,,
-Spike Nest,32, Place a damage immobilize trap globally;{leaf:consume}: Place a second damag immobilize trap globally, false,,,Immobilize all adjacent enemies;{move} 3,FALSE,1,,
-Spike Launcher,68,{attack} Attack 3;{range} Range 3,FALSE,,,Symbiote Ally;{attack} Attack 3;{range} Range; {experience} 3,FALSE,1,,
-Adrenal Boost,27,{move} Move 2;{heal} Heal 2; self, false,,,One ally may; {move} Move 3; {attack} Attack 3; {stun} Stun self,FALSE,1,,
-Erruption of Tentacles,45,{attack} Attack 3; {push} 3; Target all adjacent enemies; 2 {experience},TRUE,,,Symbiote Ally; {attack} Attack 1; {range} Range 3; {push} Push 2,FALSE,1,,
-Bursting Glands,42,{move} Move 3; {jump} Jump, false,,,Symbiote Ally; {attack} Attack 2; {poision} Poision; PB-AOE 3 {stun} Stun self, false,1,,
-Toxic Nests,56, Place a {poision} damage trap globally; {leaf:consume}: also place a {wound} Wound damage trap globally {experience}; {dark:consume}: also place a {stun} Stun damage trap globally {experience},FALSE,,,Deal 1 damage {poision} Poision to all adjacent enemies,FALSE,1,,
-Evolved Ovipositors-Infinite Duration,90, While strong or waning Locusts have the following...; {fire}:{retaliate} Retaliate 2 {range} Range 2; {dark}:{invisible} Invisible;{leaf}:{poision} Poision; {wind}: {range} Range 2,FALSE,,,Symbiote Ally; {attack} Attack 1; {range} Range 2; {target} Target 2; All enemies killed with this ability spawn a locust,FALSE,1,,
-Swarm Host,,,,,,,,,,
+name,initiative,toptext,toploss,topduration,topaoe,topquest,bottomtext,bottomloss,level,bottomduration,topaoe,bottomquest
+Deep Tunnel,81,Move to any revealed hex on the map, true,,,,{move} 2;{dark},FALSE,1,,,
+Spike Nest,32, Place a damage immobilize trap globally;{leaf:consume}: Place a second damag immobilize trap globally, false,,,,Immobilize all adjacent enemies;{move} 3,FALSE,1,,,
+Spike Launcher,68,{attack} Attack 3;{range} Range 3,FALSE,,,,Symbiote Ally;{attack} Attack 3;{range} Range; {experience} 3,FALSE,1,,,
+Adrenal Boost,27,{move} Move 2;{heal} Heal 2; self, false,,,,One ally may; {move} Move 3; {attack} Attack 3; {stun} Stun self,FALSE,1,,,
+Erruption of Tentacles,45,{attack} Attack 3; {push} 3; Target all adjacent enemies; 2 {experience},TRUE,,,,Symbiote Ally; {attack} Attack 1; {range} Range 3; {push} Push 2,FALSE,1,,,
+Bursting Glands,42,{move} Move 3; {jump} Jump, false,,,,Symbiote Ally; {attack} Attack 2; {poision} Poision; PB-AOE 3 {stun} Stun self, false,1,,,
+Toxic Nests,56, Place a {poision} damage trap globally; {leaf:consume}: also place a {wound} Wound damage trap globally {experience}; {dark:consume}: also place a {stun} Stun damage trap globally {experience},FALSE,,,,Deal 1 damage {poision} Poision to all adjacent enemies,FALSE,1,,,
+Evolved Ovipositors-Infinite Duration,90, While strong or waning Locusts have the following...; {fire}:{retaliate} Retaliate 2 {range} Range 2; {dark}:{invisible} Invisible;{leaf}:{poision} Poision; {wind}: {range} Range 2,FALSE,,,,Symbiote Ally; {attack} Attack 1; {range} Range 2; {target} Target 2; All enemies killed with this ability spawn a locust,FALSE,1,,,
+Swarm Host,77,,,,,,,,,,,

@@ -33,6 +33,9 @@ _CARD_ICON_PADDING_Y = 1.10
 _CARD_LEVEL_X = 204
 _CARD_LEVEL_Y = 68
 
+_CARD_LOSS_X = 300
+_CARD_LOSS_TOP_Y = 250
+_CARD_LOSS_BOTTOM_Y = 450
 
 def load_icon(name: str) -> Image:
     name = name.lower()
@@ -113,5 +116,12 @@ def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomli
 
     # draw level
     draw_text(text=str(level), x=_CARD_LEVEL_X, y=_CARD_LEVEL_Y, image=card, font=text_font)
+
+    # draw loss icons
+    if toploss:
+        draw_icon(card, 'bigloss', x=_CARD_LOSS_X, y=_CARD_LOSS_TOP_Y)
+
+    if bottomloss:
+        draw_icon(card, 'bigloss', x=_CARD_LOSS_X, y=_CARD_LOSS_BOTTOM_Y)
 
     return card

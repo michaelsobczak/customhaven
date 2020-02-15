@@ -16,12 +16,12 @@ def main(argv=None):
     parser.add_argument('--tint', default='#808080')
     parser.add_argument('--version', default=None)
     parser.add_argument('--name', default=None)
-    parser.add_argument('ability_file')
+    parser.add_argument('abilities_file')
 
     args = parser.parse_args()
 
-    if not os.path.exists(args.ability_file):
-        print(f'No ability file {args.ability_file} exists, exiting...')
+    if not os.path.exists(args.abilities_file):
+        print(f'No ability file {args.abilities_file} exists, exiting...')
         return 1
 
     character_name = args.name if args.name else input('Character name? ')
@@ -33,6 +33,8 @@ def main(argv=None):
         os.makedirs(output_dir)
 
     print(f'Saving output to {output_dir}')
+
+
 
 
 if __name__ == '__main__':

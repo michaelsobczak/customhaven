@@ -32,7 +32,7 @@ def parse_abilities_file(path: str, tint: typing.Tuple[int,int,int]):
                 toploss=False if toploss.lower() in ['0', 'false'] else True,
                 bottomloss=False if toploss.lower() in ['0', 'false'] else True
             )
-            cards.append(ability_card)
+            cards.append((name, ability_card))
     return cards
 
 
@@ -44,6 +44,7 @@ def main(argv=None):
     parser.add_argument('--tint', default='#808080')
     parser.add_argument('--version', default=None)
     parser.add_argument('--name', default=None)
+    parser.add_argument('--show', action='store_true')
     parser.add_argument('abilities_file')
 
     args = parser.parse_args()
@@ -64,7 +65,10 @@ def main(argv=None):
 
     cards = parse_abilities_file(args.abilities_file, _hex_to_rgb(args.tint))
     for c in cards:
-        c.show()
+        name, card = c
+        if args.show:
+            card.show()
+        card.save(os.path.join(output_dir, name), 'PNG')
 
 
 

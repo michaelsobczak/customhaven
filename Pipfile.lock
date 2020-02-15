@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3d689999b0a52944838f8898ba899b2798a6495f26bba3569f4e1ed8ec4e56f1"
+            "sha256": "c994ea01f25f082785cd599a973902eead53dfccbde61777a647db579c50a648"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -17,6 +17,7 @@
     },
     "default": {
         "gloomtools": {
+            "editable": true,
             "path": "."
         },
         "pillow": {

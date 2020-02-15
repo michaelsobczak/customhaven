@@ -8,7 +8,9 @@ def _hex_to_rgb(c: str) -> typing.Tuple[int,int,int]:
     color = c.strip('#')
     return tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
 
-def main(argv):
+def main(argv=None):
+    if not argv:
+        argv = sys.argv[1:]
     parser = argparse.ArgumentParser()
     parser.add_argument('--output-dir', default=None)
     parser.add_argument('--tint', default='#808080')

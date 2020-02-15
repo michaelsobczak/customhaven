@@ -23,6 +23,9 @@ setup(name='gloomtools',
         setup_requires=["pytest-runner"],
         tests_require=["pytest"],
         entry_points={
+            'console_scripts': [
+                'cardgen = gloomtools.__main__:main'
+            ]
         },
         include_package_data=True
 )

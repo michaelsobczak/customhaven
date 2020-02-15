@@ -23,7 +23,7 @@ def test_draw_ability_card():
     ],[
         "{attack} 3 {wound} target all adjacent enemies {dark}",
         "{attack} 3 {range} 2 {wind} {fire}",
-    ], (155,251,152,255))
+    ], (155,251,152,255), 4, True, False)
     card.show()
 
 def test_load_icon():

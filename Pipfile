@@ -8,6 +8,7 @@ pytest = "*"
 
 [packages]
 pillow = "*"
+gloomtools = {path = "."}
 
 [requires]
 python_version = "3.7"

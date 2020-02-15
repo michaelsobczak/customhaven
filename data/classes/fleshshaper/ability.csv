@@ -1,4 +1,3 @@
-ability
 name,initiative,toptext,toploss,topduration,topaoe,topquest,bottomtext,bottomloss,level,bottomduration,topaoe,bottomquest
 Deep Tunnel,81,Move to any revealed hex on the map, true,,,,{move} 2;{dark},FALSE,1,,,
 Spike Nest,32, Place a damage immobilize trap globally;{leaf:consume}: Place a second damag immobilize trap globally, false,,,,Immobilize all adjacent enemies;{move} 3,FALSE,1,,,

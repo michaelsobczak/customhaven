@@ -34,8 +34,12 @@ _CARD_LEVEL_X = 204
 _CARD_LEVEL_Y = 68
 
 _CARD_LOSS_X = 300
-_CARD_LOSS_TOP_Y = 250
-_CARD_LOSS_BOTTOM_Y = 450
+_CARD_LOSS_TOP_Y = 260
+_CARD_LOSS_BOTTOM_Y = 480
+
+_CARD_DURATION_X = 265
+_CARD_DURATION_TOP_Y = 260
+_CARD_DURATION_BOTTOM_Y = 480
 
 def load_icon(name: str) -> Image:
     name = name.lower()
@@ -125,5 +129,12 @@ def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomli
 
     if bottomloss:
         draw_icon(card, 'bigloss', x=_CARD_LOSS_X, y=_CARD_LOSS_BOTTOM_Y)
+
+    # draw duration icons
+    if topduration:
+        draw_icon(card, topduration, x=_CARD_DURATION_X, y=_CARD_DURATION_TOP_Y)
+
+    if bottomduration:
+        draw_icon(card, bottomduration, x=_CARD_DURATION_X, y=_CARD_DURATION_BOTTOM_Y)
 
     return card

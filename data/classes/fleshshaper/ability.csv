@@ -7,4 +7,4 @@ Erruption of Tentacles,45,{attack} Attack 3; {push} 3; Target all adjacent enemi
 Bursting Glands,42,{move} Move 3; {jump} Jump, false,,,,Symbiote Ally; {attack} Attack 2; {poison} poison; PB-AOE 3 {stun} Stun self, false,1,,,
 Toxic Nests,56, Place a {poison} damage trap globally; {leaf:consume}: also place a {wound} Wound damage trap globally {experience}; {dark:consume}: also place a {stun} Stun damage trap globally {experience},FALSE,,,,Deal 1 damage {poison} poison to all adjacent enemies,FALSE,1,,,
 Evolved Ovipositors-Infinite Duration,90, While strong or waning Locusts have the following...; {fire}:{retaliate} Retaliate 2 {range} Range 2; {dark}:{invisible} Invisible;{leaf}:{poison} poison; {wind}: {range} Range 2,FALSE,,,,Symbiote Ally; {attack} Attack 1; {range} Range 2; {target} Target 2; All enemies killed with this ability spawn a locust,FALSE,1,,,
-Swarm Host,77,,,,,,,,,,,
+Swarm Host,77,do some stuff,false,infinite_lifetime,,,,,,,,

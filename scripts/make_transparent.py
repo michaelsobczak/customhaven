@@ -1,10 +1,13 @@
 import argparse
 import os, sys
 from PIL import Image
+import numpy as np
+
+
 
 def make_transparent(f) -> Image:
-    img = Image.open(f)
-    img.convert('RGBA')
+    # i = Image.open(f)
+    # i.convert('RGBA')
     # datas = i.getdata()
     # newData = []
     # for item in datas:
@@ -13,14 +16,22 @@ def make_transparent(f) -> Image:
     #     else:
     #         newData.append(item)
     # i.putdata(newData)
-
-    pixdata = img.load()
-
-    width, height = img.size
-    for y in range(height):
-        for x in range(width):
-            if pixdata[x, y] == (255, 255, 255, 255):
-                pixdata[x, y] = (255, 255, 255, 0)
+    # i.show()
+    threshold=100
+    dist=5
+    img=Image.open(f).convert('RGBA')
+    # np.asarray(img) is read only. Wrap it in np.array to make it modifiable.
+    arr=np.array(np.asarray(img))
+    r,g,b,a=np.rollaxis(arr,axis=-1)    
+    mask=((r>threshold)
+        & (g>threshold)
+        & (b>threshold)
+        & (np.abs(r-g)<dist)
+        & (np.abs(r-b)<dist)
+        & (np.abs(g-b)<dist)
+        )
+    arr[mask,3]=0
+    img=Image.fromarray(arr,mode='RGBA')
     return img
 
 def main(argv):

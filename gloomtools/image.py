@@ -76,8 +76,8 @@ def draw_ability_line(image: Image, text: str, x: int, y: int):
                 draw_text(pending_text, current_x, y, image, text_font)
                 current_x += (_CARD_TEXT_WIDTH * len(pending_text))
                 pending_text = ''
-            icon = token.replace('{', '').replace('}', '')
-            draw_icon(image, icon, current_x, y)
+            icons = token.replace('{', '').replace('}', '').split(',')
+            [ draw_icon(image, icon, current_x, y) for icon in icons ]
             current_x += int(_CARD_ICON_WIDTH * 1.05)
         else:
             pending_text += f'{token} '
@@ -86,8 +86,7 @@ def draw_ability_line(image: Image, text: str, x: int, y: int):
         draw_text(pending_text, current_x, y, image, text_font)
 
 
-
-def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomlines: List[str], color):
+def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomlines: List[str], color) -> Image:
 
     card = load_ability_card_background()
     card = tint(card, *color)

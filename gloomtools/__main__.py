@@ -21,7 +21,7 @@ def parse_abilities_file(path: str, tint: typing.Tuple[int,int,int]):
         headers = lines[0]
         abilities = lines[1:]
         for a in abilities:
-            name, init, top, toploss, bottom, bottomloss, level = [ s.strip() for s in a ]
+            name, init, top, toploss, topduration, topaoe, topquest, bottom, bottomloss, level, bottomduration, bottomaoe, bottomquest = [ s.strip() for s in a ]
             ability_card = draw_ability_card(
                 title=name,
                 initiative=init,
@@ -30,7 +30,7 @@ def parse_abilities_file(path: str, tint: typing.Tuple[int,int,int]):
                 color=tint,
                 level=level,
                 toploss=False if toploss.lower() in ['0', 'false'] else True,
-                bottomloss=False if bottomloss.lower() in ['0', 'false'] else True
+                bottomloss=False if toploss.lower() in ['0', 'false'] else True
             )
             cards.append(ability_card)
     return cards

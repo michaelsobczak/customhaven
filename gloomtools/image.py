@@ -94,7 +94,9 @@ def draw_ability_line(image: Image, text: str, x: int, y: int):
 
 
 def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomlines: List[str],
-                      color: Tuple[int,int,int], level: str, toploss: bool, bottomloss: bool) -> Image:
+                      color: Tuple[int,int,int], level: str, toploss: bool, bottomloss: bool,
+                      topduration: str, topaoe: str, topquest: str,
+                      bottomduration: str, bottomaoe: str, bottomquest: str) -> Image:
 
     card = load_ability_card_background()
     card = tint(card, *color)

@@ -30,7 +30,13 @@ def parse_abilities_file(path: str, tint: typing.Tuple[int,int,int]):
                 color=tint,
                 level=level,
                 toploss=False if toploss.lower() in ['0', 'false'] else True,
-                bottomloss=False if toploss.lower() in ['0', 'false'] else True
+                bottomloss=False if toploss.lower() in ['0', 'false'] else True,
+                topduration=topduration,
+                topaoe=topaoe,
+                topquest=topquest,
+                bottomduration=bottomduration,
+                bottomaoe=bottomaoe,
+                bottomquest=bottomquest
             )
             cards.append((name, ability_card))
     return cards

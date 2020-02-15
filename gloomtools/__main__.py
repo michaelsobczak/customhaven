@@ -68,7 +68,7 @@ def main(argv=None):
         name, card = c
         if args.show:
             card.show()
-        card.save(os.path.join(output_dir, name), 'PNG')
+        card.save(os.path.join(output_dir, f'{name.replace(" ", "_")}.png'), 'PNG')
 
 
 

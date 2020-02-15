@@ -1,6 +1,6 @@
 name,initiative,toptext,toploss,bottomtext,bottomloss,level
 Deep Tunnel,81,Move to any revealed hex on the map, true, {move} 2;{dark},false,1
-Spike Nest, 32, Place a damage immobilize trap globally;{leaf,consume}: Place a second damag immobilize trap globally, false,Immobilize all adjacent enemies;{move} 3,false,1
+Spike Nest, 32, Place a damage immobilize trap globally;{leaf:consume}: Place a second damag immobilize trap globally, false,Immobilize all adjacent enemies;{move} 3,false,1
 Spike Launcher,68, {attack} 3;{range} 3,false,Symbiote Ally;{attack} 3;{range}; {experience} 3,false,1
 Adrenal Boost, 27,{move} 2;{heal} 2; self, false, One ally may; {move} 3; {attack} 3; {stun} self,false,1
-Erruption of Tentacles,45,{attack} 3; {push} 3; Target all adjacent enemies; 2 {experience},true, Symbiote Ally; {attack} 1; {range} 3; {pull} 2,false,1
+Erruption of Tentacles,45,{attack} 3; {push} 3; Target all adjacent enemies; 2 {experience},true, Symbiote Ally; {attack} 1; {range} 3; {push} 2,false,1

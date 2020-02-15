@@ -37,6 +37,7 @@ def load_icon(name: str) -> Image:
         bname, ext = os.path.splitext(iconfile)
         if bname.lower() == name and ext.replace('.', '') in ['jpeg', 'jpg', 'png']:
             return Image.open(os.path.join(_ICON_DIR, iconfile))
+    print(f'Unable to find {name}')
     return None
 
 
@@ -76,7 +77,7 @@ def draw_ability_line(image: Image, text: str, x: int, y: int):
                 draw_text(pending_text, current_x, y, image, text_font)
                 current_x += (_CARD_TEXT_WIDTH * len(pending_text))
                 pending_text = ''
-            icons = token.replace('{', '').replace('}', '').split(',')
+            icons = [ i for i in token.replace('{', '').replace('}', '').split(':') if i ]
             [ draw_icon(image, icon, current_x, y) for icon in icons ]
             current_x += int(_CARD_ICON_WIDTH * 1.05)
         else:

@@ -16,3 +16,5 @@ pipenv run pytest
 (from inside pipenv shell)
 
 cardgen -h
+
+cardgen data/classes/oozelord/ability.csv --name oozy --tint="#98fb98"

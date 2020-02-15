@@ -1,6 +1,6 @@
 
 from PIL import ImageFont, ImageDraw, Image
-from typing import List
+from typing import List, Tuple
 import os
 
 _ICON_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'icons')
@@ -30,6 +30,12 @@ _CARD_TEXT_WIDTH = 5
 _CARD_ICON_PADDING_X = 1.05
 _CARD_ICON_PADDING_Y = 1.10
 
+_CARD_LEVEL_X = 204
+_CARD_LEVEL_Y = 68
+
+_CARD_LOSS_X = 300
+_CARD_LOSS_TOP_Y = 250
+_CARD_LOSS_BOTTOM_Y = 450
 
 def load_icon(name: str) -> Image:
     name = name.lower()
@@ -87,7 +93,8 @@ def draw_ability_line(image: Image, text: str, x: int, y: int):
         draw_text(pending_text, current_x, y, image, text_font)
 
 
-def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomlines: List[str], color) -> Image:
+def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomlines: List[str],
+                      color: Tuple[int,int,int], level: str, toploss: bool, bottomloss: bool) -> Image:
 
     card = load_ability_card_background()
     card = tint(card, *color)
@@ -106,5 +113,15 @@ def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomli
     for i, bl in enumerate(bottomlines):
         ly = int(_CARD_BOTTOM_TEXT_Y + ((_CARD_ICON_HEIGHT * _CARD_ICON_PADDING_Y) * i))
         draw_ability_line(card, bl, _CARD_BOTTOM_TEXT_X, ly)
+
+    # draw level
+    draw_text(text=str(level), x=_CARD_LEVEL_X, y=_CARD_LEVEL_Y, image=card, font=text_font)
+
+    # draw loss icons
+    if toploss:
+        draw_icon(card, 'bigloss', x=_CARD_LOSS_X, y=_CARD_LOSS_TOP_Y)
+
+    if bottomloss:
+        draw_icon(card, 'bigloss', x=_CARD_LOSS_X, y=_CARD_LOSS_BOTTOM_Y)
 
     return card

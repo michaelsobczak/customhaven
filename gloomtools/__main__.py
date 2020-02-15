@@ -27,7 +27,10 @@ def parse_abilities_file(path: str, tint: typing.Tuple[int,int,int]):
                 initiative=init,
                 toplines=top.split(';'),
                 bottomlines=bottom.split(';'),
-                color=tint
+                color=tint,
+                level=level,
+                toploss=False if toploss.lower() in ['0', 'false'] else True,
+                bottomloss=False if bottomloss.lower() in ['0', 'false'] else True
             )
             cards.append(ability_card)
     return cards

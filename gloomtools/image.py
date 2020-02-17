@@ -1,6 +1,6 @@
 
 from PIL import ImageFont, ImageDraw, Image
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 import os
 
 _ICON_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'icons')
@@ -41,6 +41,18 @@ _CARD_DURATION_X = 265
 _CARD_DURATION_TOP_Y = 260
 _CARD_DURATION_BOTTOM_Y = 480
 
+_CARD_AOE_ORIGIN_X = 250
+_CARD_AOE_ORIGIN_TOP_Y = 100
+_CARD_AOE_ORIGIN_BOTTOM_Y = 100
+_CARD_AOE_HEX_HEIGHT = 30
+_CARD_AOE_HEX_WIDTH = int(_CARD_AOE_HEX_HEIGHT * 1.1547)
+
+_CARD_HEX_OVERLAP_Y = 0.5
+#_CARD_HEX_OVERLAP_Y = 1.0 / (2**.5)
+#_CARD_HEX_OVERLAP_X = 1.0 / (2 + (2**.5))
+_CARD_HEX_OVERLAP_X = (3**.5) / 2
+_CARD_AOE_ICON_PADDING = .05
+
 def load_icon(name: str) -> Image:
     name = name.lower()
     for iconfile in os.listdir(_ICON_DIR):
@@ -50,6 +62,12 @@ def load_icon(name: str) -> Image:
     print(f'Unable to find {name}')
     return None
 
+
+def draw_aoe(card, origin: Tuple[int, int], hexes: List[Tuple[int,int,int]]):
+    for hex in hexes:
+        x = _CARD_AOE_ORIGIN_X + (_CARD_AOE_HEX_WIDTH * int(hex[0]) * _CARD_HEX_OVERLAP_X) # - ((_CARD_HEX_OVERLAP * _CARD_AOE_HEX_SIZE) * int(hex[1]))
+        y = _CARD_AOE_ORIGIN_TOP_Y + (_CARD_AOE_HEX_HEIGHT * int(hex[1])) + (_CARD_HEX_OVERLAP_Y * int(hex[0]) * _CARD_AOE_HEX_HEIGHT)
+        draw_icon(card, hex[2], int(x), int(y), _CARD_AOE_HEX_WIDTH, _CARD_AOE_HEX_HEIGHT)
 
 def draw_icon(img, icon,  x, y, w=_CARD_ICON_WIDTH, h=_CARD_ICON_HEIGHT):
     ic = load_icon(icon).resize((w, h))
@@ -61,7 +79,9 @@ def load_font(path: str = _FONT_PATH, size: int = 10):
 
 
 def load_ability_card_background(width: int = 413, height: int = 563) -> Image:
-    return Image.open(_ABILITY_CARD_PATH).resize((width, height))
+    i = Image.open(_ABILITY_CARD_PATH)
+    i.convert('RGBA')
+    return i.resize((width, height))
 
 
 def draw_text(text: str, x: int, y: int, image: Image, font):
@@ -136,5 +156,12 @@ def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomli
 
     if bottomduration:
         draw_icon(card, bottomduration, x=_CARD_DURATION_X, y=_CARD_DURATION_BOTTOM_Y)
+
+    draw_aoe(card, (_CARD_AOE_ORIGIN_X, _CARD_AOE_ORIGIN_TOP_Y), [
+        (0, 1, 'redhex_cropped'),
+        (1, 1, 'redhex_cropped'),
+        (1, 0, 'redhex_cropped'),
+        (0, 2, 'grayhex_cropped')
+    ])
 
     return card

@@ -10,6 +10,13 @@ pytest = "*"
 pillow = "*"
 gloomtools = {editable = true,path = "."}
 numpy = "*"
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+alembic = "*"
+flask-login = "*"
+flask-restless = "*"
+flask-admin = "*"
+flask-wtforms = "*"
 
 [requires]
 python_version = "3.7"

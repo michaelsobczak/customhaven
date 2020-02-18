@@ -4,8 +4,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 import os
 from typing import Type
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
 
 def get_sqlalchemy_uri() -> str:
 
@@ -39,7 +37,7 @@ def make_secondary_table(a: str, b: str) -> Table:
 
 user_role_table = make_secondary_table('user', 'role')
 
-class User(UserMixin, Base):
+class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     username = Column(String(64), index=True, unique=True)

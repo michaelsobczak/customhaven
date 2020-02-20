@@ -83,7 +83,7 @@ def draw_aoe(card, origin: Tuple[int, int], hexes: List[Tuple[int,int,int]]):
 
 def draw_icon(img, icon,  x, y, w=_CARD_ICON_WIDTH, h=_CARD_ICON_HEIGHT):
     ic = load_icon(icon).resize((w, h))
-    img.paste(ic, (x, y))
+    img.paste(ic, (x, y), ic)
 
 
 def load_font(path: str = _FONT_PATH, size: int = 10):
@@ -170,10 +170,10 @@ def draw_ability_card(title: str, initiative: int, toplines: List[str], bottomli
         draw_icon(card, bottomduration, x=_CARD_DURATION_X, y=_CARD_DURATION_BOTTOM_Y)
 
     draw_aoe(card, (_CARD_AOE_ORIGIN_X, _CARD_AOE_ORIGIN_TOP_Y), [
-        (0, 1, 'redhex_cropped'),
-        (1, 1, 'redhex_cropped'),
-        (1, 0, 'redhex_cropped'),
-        (0, 2, 'grayhex_cropped')
+        (0, 1, 'redhex'),
+        (1, 1, 'redhex'),
+        (1, 0, 'redhex'),
+        (0, 2, 'grayhex')
     ])
 
     return card

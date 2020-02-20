@@ -13,6 +13,7 @@ numpy = "*"
 flask-sqlalchemy = "*"
 psycopg2-binary = "*"
 alembic = "*"
+flask-gridify = "*"
 
 [requires]
 python_version = "3.7"

@@ -2,6 +2,7 @@
 from PIL import ImageFont, ImageDraw, Image
 from typing import List, Tuple, Dict
 import os
+from math import tan, radians
 
 _ICON_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'icons')
 _FONT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'assets', 'fonts', 'PirataOne-Gloomhaven.ttf')
@@ -50,7 +51,7 @@ _CARD_AOE_HEX_WIDTH = int(_CARD_AOE_HEX_HEIGHT * 1.1547)
 _CARD_HEX_OVERLAP_Y = 0.5
 #_CARD_HEX_OVERLAP_Y = 1.0 / (2**.5)
 #_CARD_HEX_OVERLAP_X = 1.0 / (2 + (2**.5))
-_CARD_HEX_OVERLAP_X = (3**.5) / 2
+_CARD_HEX_OVERLAP_X = tan(radians(30)) * (_CARD_AOE_HEX_HEIGHT/ 2.0)
 _CARD_AOE_ICON_PADDING = .05
 
 def load_icon(name: str) -> Image:
@@ -64,10 +65,21 @@ def load_icon(name: str) -> Image:
 
 
 def draw_aoe(card, origin: Tuple[int, int], hexes: List[Tuple[int,int,int]]):
+    ox, oy = origin
+    W = _CARD_AOE_HEX_WIDTH
+    H = _CARD_AOE_HEX_HEIGHT
+    OVERLAP = _CARD_HEX_OVERLAP_X
     for hex in hexes:
         x = _CARD_AOE_ORIGIN_X + (_CARD_AOE_HEX_WIDTH * int(hex[0]) * _CARD_HEX_OVERLAP_X) # - ((_CARD_HEX_OVERLAP * _CARD_AOE_HEX_SIZE) * int(hex[1]))
         y = _CARD_AOE_ORIGIN_TOP_Y + (_CARD_AOE_HEX_HEIGHT * int(hex[1])) + (_CARD_HEX_OVERLAP_Y * int(hex[0]) * _CARD_AOE_HEX_HEIGHT)
         draw_icon(card, hex[2], int(x), int(y), _CARD_AOE_HEX_WIDTH, _CARD_AOE_HEX_HEIGHT)
+
+        cx, cy = hex[0], hex[1]
+        rx = (W - OVERLAP) * cx
+        ry = (H * cy) + (0.5 * H * cx)
+        fx = int(ox + rx)
+        fy = int(oy + ry)
+        draw_icon(card, hex[2], fx, fy, w=_CARD_AOE_HEX_WIDTH, h=_CARD_AOE_HEX_HEIGHT)
 
 def draw_icon(img, icon,  x, y, w=_CARD_ICON_WIDTH, h=_CARD_ICON_HEIGHT):
     ic = load_icon(icon).resize((w, h))

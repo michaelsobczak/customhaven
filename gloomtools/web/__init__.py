@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_gridify import FlaskGridify
 import os
-from ..models import *
+from ..models import AbilityCard, get_sqlalchemy_uri, Base
 
 app = Flask(__name__)
 
@@ -16,5 +17,8 @@ setup_app()
 
 
 db = SQLAlchemy(app, model_class=Base)
+grid = FlaskGridify(app, db, '/grids')
+
+grid.gridify(AbilityCard)
 
 from . import views, api
